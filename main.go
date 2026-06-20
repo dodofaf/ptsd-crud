@@ -17,6 +17,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	err = RunMigrations(cfg.DatabaseURL)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to run migrations: %v\n", err)
+		os.Exit(1)
+	}
+
 	dbpool, err := pgxpool.New(context.Background(), cfg.DatabaseURL)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
