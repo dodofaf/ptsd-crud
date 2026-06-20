@@ -1,0 +1,25 @@
+meta {
+  name: 01-create-book
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/book
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "published_year": 1949
+  }
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setEnvVar("bookId", res.body.id);
+  }
+}

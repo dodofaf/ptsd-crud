@@ -1,0 +1,11 @@
+meta {
+  name: 04-get-book-invalid-uuid
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/book/this-is-not-a-valid-uuid
+  body: none
+  auth: none
+}
